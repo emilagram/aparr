@@ -45,23 +45,9 @@
 
     .container{ max-width: 1150px; margin: 0 auto; }
 
-    .top-alert{
-      border: 1px solid rgba(255,77,77,.55);
-      background: linear-gradient(180deg, rgba(255,77,77,.16), rgba(255,77,77,.08));
-      box-shadow: 0 10px 30px rgba(255,77,77,.10);
-      color: #ffecec;
-      padding: 14px 16px;
-      border-radius: 16px;
-      font-weight: 900;
-      font-size: 18px;
-      line-height: 1.35;
-      margin-bottom: 16px;
-    }
-    .top-alert b{ color:#ffffff; }
-
     h2{ margin: 10px 0 8px 0; font-size: 26px; letter-spacing:.2px; }
 
-    /* ✅ Başlıq altı 2 düymə */
+    /* ✅ Başlıq altı düymələr */
     .headline-actions{
       display:flex;
       gap:10px;
@@ -94,11 +80,6 @@
       border-color: rgba(255,77,77,.55);
       background: linear-gradient(180deg, rgba(255,77,77,.20), rgba(255,77,77,.08));
       color:#ffecec;
-    }
-    .soft-btn.green{
-      border-color: rgba(34,197,94,.50);
-      background: linear-gradient(180deg, rgba(34,197,94,.20), rgba(34,197,94,.08));
-      color:#eafff2;
     }
 
     .wrap{ display:flex; gap:18px; align-items:flex-start; }
@@ -194,16 +175,11 @@
       line-height: 1.35;
     }
 
-    .warn-note{
-      margin-top: 10px;
-      color: #fff2f2;
-      background: rgba(255,77,77,.12);
-      border: 1px solid rgba(255,77,77,.35);
-      padding: 10px 11px;
-      border-radius: 14px;
+    .mini-warn{
+      margin-top: 6px;
+      font-size: 12px;
       font-weight: 900;
-      font-size: 12.8px;
-      line-height: 1.35;
+      color: #ffb3b3;
     }
 
     .btn{
@@ -279,24 +255,26 @@
     }
     .inline-link-btn.red:hover{ transform: translateY(-1px); }
 
-    .inline-link-btn.green{
+    /* ✅ Qrup linki üçün balaca buton */
+    .tiny-link-btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(34,197,94,.45);
-      background: linear-gradient(135deg, rgba(37,211,102,.95), rgba(16,185,129,.95));
-      color:#06210f;
-      font-weight: 1000;
-      font-size: 13px;
+      margin-top: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: #eaf2ff;
+      font-weight: 900;
+      font-size: 12.5px;
       text-decoration:none;
       cursor:pointer;
       transition:.15s ease;
-      box-shadow: 0 14px 30px rgba(34,197,94,.12);
+      box-shadow: 0 10px 22px rgba(0,0,0,.18);
       width: fit-content;
     }
-    .inline-link-btn.green:hover{ transform: translateY(-1px); }
+    .tiny-link-btn:hover{ transform: translateY(-1px); }
 
     .status-row{
       margin-top: 10px;
@@ -324,31 +302,6 @@
       margin-top: 6px;
     }
 
-    .side-info ul{ margin: 0; padding-left: 18px; line-height: 1.55; color:#d7e3ff; font-size: 13px; }
-
-    .pill{
-      display:inline-block;
-      padding: 4px 9px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 1000;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      margin: 3px 8px 0 0;
-    }
-
-    .danger-text{
-      margin-top: 12px;
-      padding: 12px 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,138,138,.35);
-      background: linear-gradient(180deg, rgba(255,138,138,.14), rgba(255,138,138,.06));
-      color:#fff1f1;
-      font-weight: 900;
-      line-height: 1.35;
-      font-size: 13px;
-    }
-
     .rule-title{
       font-weight: 1000;
       font-size: 15px;
@@ -362,6 +315,19 @@
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.14);
       margin-top: 10px;
+    }
+
+    .side-info ul{ margin: 0; padding-left: 18px; line-height: 1.55; color:#d7e3ff; font-size: 13px; }
+
+    .pill{
+      display:inline-block;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 1000;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      margin: 3px 8px 0 0;
     }
 
     .result{ margin-top: 18px; padding: 16px; }
@@ -486,16 +452,11 @@
 
 <body>
   <div class="container">
-    <div class="top-alert">
-      Bu avtomatik sistemdir. Elanınız yalnız adminə <b>hazır şəkildə yaradılmış form</b> və <b>düzgün bilet</b> göndərildikdə paylaşılır.
-    </div>
-
     <h2>📦 Aparıram Formu</h2>
 
-    <!-- ✅ İstədiyiniz kimi: yalnız 2 düymə -->
+    <!-- ✅ yalnız 1 düymə -->
     <div class="headline-actions">
       <button type="button" class="soft-btn red" id="goRulesBtn">Qaydalar</button>
-      <a class="soft-btn green" href="https://bit.ly/3kklACf" target="_blank" rel="noopener noreferrer">AG Whatsap qrupu</a>
     </div>
 
     <div class="wrap">
@@ -543,12 +504,8 @@
         <input type="text" id="phone" placeholder="+994551234567" required />
         <div id="phoneError" class="error">Nömrə formatı düzgün deyil. Nümunə: +994XXXXXXXXX və ya +90XXXXXXXXXX</div>
 
-        <label>WhatsApp nömrənizi təkrar yazın (təsdiq)</label>
-        <input type="text" id="phoneConfirm" placeholder="+994551234567" />
-        <div id="phoneMatchError" class="error">Elandakı nömrə ilə WhatsApp nömrəniz eyni olmalıdır.</div>
-
-        <div class="warn-note">
-          ⚠️ Adminə elan göndərdiyiniz nömrə ilə elanda yazdığınız nömrə eyni olmalıdır. Uyğun gəlməzsə, elan paylaşılmır.
+        <div class="mini-warn">
+          ⚠️ Elandakı WhatsApp nömrəsi və adminə elan göndərdiyiniz WhatsApp nömrəsi eyni olmalıdır.
         </div>
 
         <label style="margin-top:14px;">Təyyarə bileti (PDF/şəkil)</label>
@@ -573,7 +530,7 @@
         <button type="button" id="genBtn" class="btn">Elan Hazırla</button>
       </form>
 
-      <aside class="side-info card" id="qisa-qaydalar">
+      <aside class="side-info card" id="qaydalarBolmesi">
         <div class="section-title"><span class="dot"></span>Qaydalar və məlumat</div>
 
         <div class="rule-block">
@@ -593,7 +550,13 @@
         <div class="rule-block" id="group-rules">
           <div class="rule-title">Qısaca qaydalar</div>
           <ul style="margin-top:8px;">
-            <li><b>1)</b> Elan paylaşmaq üçün qrupun üzvü olmaq mütləqdir.</li>
+            <li>
+              <b>1)</b> Elan paylaşmaq üçün <b>Apar Göndər</b> WhatsApp qrupunun üzvü olmaq mütləqdir.
+              <br />
+              <a class="tiny-link-btn" href="https://bit.ly/3kklACf" target="_blank" rel="noopener noreferrer">
+                Bu linkdən qrupa daxil ola bilərsiniz
+              </a>
+            </li>
             <li><b>2)</b> Elanlar həftədə <b>1 dəfə</b> paylaşılır.</li>
             <li><b>3)</b> Hər <b>#APARIRAM</b> elanı üçün bilet (PDF və ya şəkil formatında) göndərmək <b>mütləqdir</b>.
               Bu, saxta elanların qarşısını almaq üçün tətbiq olunur. (Biletdə <b>ad</b>, <b>soyad</b> və <b>PNR</b> nömrəsi görünməlidir.)
@@ -636,10 +599,6 @@
             <span class="pill">#QTY — yuxarı</span>
           </div>
         </div>
-
-        <div class="danger-text">
-          Üz vurmayın — admin xəbərdarlıq etməyəcək və yazdıqlarınıza cavab verməyəcək.
-        </div>
       </aside>
     </div>
 
@@ -664,23 +623,12 @@
     const dateError = document.getElementById("dateError");
 
     const phoneInput = document.getElementById("phone");
-    const phoneConfirmInput = document.getElementById("phoneConfirm");
-    const phoneMatchError = document.getElementById("phoneMatchError");
-
-    const tariffInfoBtn = document.getElementById("tariffInfoBtn");
-    const tariffJumpBtn = document.getElementById("tariffJumpBtn");
-    const qrupTarifleriEl = document.getElementById("qrup-tarifleri");
-
     const resultDiv = document.getElementById("result");
 
-    // ✅ “Qaydalar” düyməsi bu bloka aparır
-    const goRulesBtn = document.getElementById("goRulesBtn");
-    const rulesPanel = document.getElementById("qisa-qaydalar");
-    if(goRulesBtn && rulesPanel){
-      goRulesBtn.addEventListener("click", () => {
-        rulesPanel.scrollIntoView({ behavior:"smooth", block:"start" });
-      });
-    }
+    // ✅ “Qaydalar” düyməsi
+    document.getElementById("goRulesBtn").addEventListener("click", () => {
+      document.getElementById("qaydalarBolmesi").scrollIntoView({ behavior:"smooth", block:"start" });
+    });
 
     function toISODate(d){
       const yyyy = d.getFullYear();
@@ -695,7 +643,6 @@
       const targetYear = d.getFullYear() + Math.floor(targetMonth / 12);
       const monthIndex = (targetMonth % 12 + 12) % 12;
       const day = d.getDate();
-
       const lastDay = new Date(targetYear, monthIndex + 1, 0).getDate();
       const clampedDay = Math.min(day, lastDay);
       return new Date(targetYear, monthIndex, clampedDay);
@@ -722,7 +669,6 @@
         showDateError("Tarixi seçməlisiniz.");
         return false;
       }
-
       const chosen = new Date(selectedISO + "T00:00:00");
       chosen.setHours(0,0,0,0);
 
@@ -730,24 +676,20 @@
         showDateError("Keçmiş tarix seçmək olmaz.");
         return false;
       }
-
       if(chosen > maxDate){
         showDateError("Elanlarımız yalnız bir ay içindəki tarixlər üçün uyğun şəkildə verilməlidir.");
         return false;
       }
-
       hideDateError();
       return true;
     }
-
     dateInput.addEventListener("change", () => validateDate(dateInput.value));
 
     function jumpToTariffs(){
-      if(!qrupTarifleriEl) return;
-      qrupTarifleriEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      document.getElementById("qrup-tarifleri").scrollIntoView({ behavior: "smooth", block: "start" });
     }
-    if (tariffInfoBtn) tariffInfoBtn.addEventListener("click", jumpToTariffs);
-    if (tariffJumpBtn) tariffJumpBtn.addEventListener("click", jumpToTariffs);
+    document.getElementById("tariffInfoBtn").addEventListener("click", jumpToTariffs);
+    document.getElementById("tariffJumpBtn").addEventListener("click", jumpToTariffs);
 
     function showToast(msg){
       const t = document.getElementById("toast");
@@ -818,8 +760,7 @@
     });
 
     document.getElementById("payment").addEventListener("change", function() {
-      document.getElementById("tariffOptions").style.display =
-        this.value === "ödənişli" ? "block" : "none";
+      document.getElementById("tariffOptions").style.display = this.value === "ödənişli" ? "block" : "none";
     });
 
     function normalizePhone(p){ return (p || "").replace(/\s/g,""); }
@@ -827,27 +768,6 @@
       const raw = normalizePhone(input);
       return /^(\+994\d{9}|\+90\d{10})$/.test(raw);
     }
-
-    function validatePhoneMatch(){
-      const p1 = normalizePhone(phoneInput.value.trim());
-      const p2 = normalizePhone(phoneConfirmInput.value.trim());
-
-      if(!p2){
-        phoneMatchError.style.display = "none";
-        return true;
-      }
-
-      if(p1 && p2 && p1 === p2){
-        phoneMatchError.style.display = "none";
-        return true;
-      }
-
-      phoneMatchError.style.display = "block";
-      return false;
-    }
-
-    phoneInput.addEventListener("input", validatePhoneMatch);
-    phoneConfirmInput.addEventListener("input", validatePhoneMatch);
 
     function formatDateDDMMYYYY(isoDate){
       const d = new Date(isoDate + "T00:00:00");
@@ -873,16 +793,6 @@
       const phone = phoneInput.value.trim();
       document.getElementById("phoneError").style.display = (!isValidPhone(phone)) ? "block" : "none";
       if(!isValidPhone(phone)) valid = false;
-
-      const confirm = phoneConfirmInput.value.trim();
-      if(!confirm){
-        phoneMatchError.textContent = "WhatsApp nömrənizi təkrar yazın (təsdiq).";
-        phoneMatchError.style.display = "block";
-        valid = false;
-      }else{
-        phoneMatchError.textContent = "Elandakı nömrə ilə WhatsApp nömrəniz eyni olmalıdır.";
-        if(!validatePhoneMatch()) valid = false;
-      }
 
       if(!selectedTicket){
         showTicketError("❗ Bilet yüklənməyib. apargetir.bot biletinizi yoxlamalıdır — buna görə bilet (PDF və ya şəkil) yüklənmədən elan hazırlamaq olmaz.");
@@ -953,11 +863,9 @@
     function generateResult() {
       if(!validateFormBeforeBuild()){
         showToast("Formda səhv var ⚠️");
-        if(dateError.style.display === "block") dateInput.scrollIntoView({behavior:"smooth", block:"center"});
-        else if(document.getElementById("itemError").style.display === "block") document.getElementById("itemError").scrollIntoView({behavior:"smooth", block:"center"});
-        else if(document.getElementById("phoneError").style.display === "block") document.getElementById("phoneError").scrollIntoView({behavior:"smooth", block:"center"});
-        else if(phoneMatchError.style.display === "block") phoneMatchError.scrollIntoView({behavior:"smooth", block:"center"});
-        else if(ticketError.style.display === "block") ticketError.scrollIntoView({behavior:"smooth", block:"center"});
+        const firstError = [dateError, document.getElementById("itemError"), document.getElementById("phoneError"), ticketError]
+          .find(el => el && el.style.display === "block");
+        if(firstError) firstError.scrollIntoView({behavior:"smooth", block:"center"});
         return;
       }
 
@@ -1005,12 +913,6 @@
       });
 
       document.getElementById("waBtn").addEventListener("click", () => {
-        const p1 = normalizePhone(phoneInput.value.trim());
-        const p2 = normalizePhone(phoneConfirmInput.value.trim());
-        if(!p2 || p1 !== p2){
-          alert("Elandakı nömrə ilə WhatsApp nömrəniz eyni olmalıdır.");
-          return;
-        }
         openWhatsAppToAdminWithText(lastElanText);
         showToast("WhatsApp açıldı ✅");
       });
