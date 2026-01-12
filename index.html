@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aparıram Formu</title>
+
+  <style>
+    :root{
+      --bg1:#0b1220;
+      --bg2:#0f1b33;
+      --line:rgba(255,255,255,.10);
+      --text:#eaf2ff;
+      --muted:#a9b7d6;
+
+      --accent:#7c3aed;
+      --accent2:#06b6d4;
+
+      --danger:#ff4d4d;
+      --danger2:#ff2f2f;
+
+      --ok:#22c55e;
+
+      --radius:18px;
+      --shadow: 0 18px 45px rgba(0,0,0,.35);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    html{ scroll-behavior: smooth; }
+
+    body{
+      margin:0;
+      padding:22px;
+      color:var(--text);
+      font-family: "Segoe UI", "Noto Sans", "DejaVu Sans", Arial, system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(1200px 700px at 10% 10%, rgba(124,58,237,.28), transparent 55%),
+        radial-gradient(900px 600px at 90% 15%, rgba(6,182,212,.18), transparent 50%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: geometricPrecision;
+    }
+
+    .container{ max-width: 1150px; margin: 0 auto; }
+
+    .top-alert{
+      border: 1px solid rgba(255,77,77,.55);
+      background: linear-gradient(180deg, rgba(255,77,77,.16), rgba(255,77,77,.08));
+      box-shadow: 0 10px 30px rgba(255,77,77,.10);
+      color: #ffecec;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+    .top-alert b{ color:#ffffff; }
+
+    h2{ margin: 10px 0 8px 0; font-size: 26px; letter-spacing:.2px; }
+
+    /* ✅ Başlıq altı 2 düymə */
+    .headline-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin: 0 0 14px 0;
+      align-items:center;
+    }
+
+    .soft-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: #eaf2ff;
+      font-weight: 1000;
+      font-size: 13px;
+      cursor:pointer;
+      user-select:none;
+      transition: .15s ease;
+      text-decoration:none;
+      box-shadow: 0 10px 22px rgba(0,0,0,.22);
+    }
+    .soft-btn:hover{ transform: translateY(-1px); }
+
+    .soft-btn.red{
+      border-color: rgba(255,77,77,.55);
+      background: linear-gradient(180deg, rgba(255,77,77,.20), rgba(255,77,77,.08));
+      color:#ffecec;
+    }
+    .soft-btn.green{
+      border-color: rgba(34,197,94,.50);
+      background: linear-gradient(180deg, rgba(34,197,94,.20), rgba(34,197,94,.08));
+      color:#eafff2;
+    }
+
+    .wrap{ display:flex; gap:18px; align-items:flex-start; }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    form.card{ flex: 0 0 460px; max-width: 460px; padding: 16px; }
+    .side-info.card{ flex:1; min-width: 300px; padding: 16px; }
+
+    .section-title{
+      margin:0 0 10px 0;
+      font-size: 15px;
+      color: #d7e3ff;
+      font-weight: 900;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .section-title .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 3px rgba(124,58,237,.15);
+    }
+
+    label{
+      display:block;
+      margin-top: 12px;
+      font-weight: 900;
+      color:#dce8ff;
+      font-size: 13px;
+    }
+
+    .muted{ color: var(--muted); font-size: 12.8px; margin-top: 7px; line-height: 1.45; }
+
+    input[type="text"], input[type="date"], select{
+      width:100%;
+      padding: 11px 12px;
+      margin-top: 7px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(8,14,26,.55);
+      color: var(--text);
+      outline: none;
+      font-size: 14px;
+      transition: .15s ease;
+    }
+    input::placeholder{ color: rgba(233,243,255,.55); }
+
+    input:focus, select:focus{
+      border-color: rgba(124,58,237,.65);
+      box-shadow: 0 0 0 4px rgba(124,58,237,.15);
+    }
+
+    .checkbox-group{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 9px; }
+
+    .chip{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(8,14,26,.45);
+      user-select:none;
+      cursor:pointer;
+      transition:.15s ease;
+      font-weight: 800;
+      color:#dce8ff;
+    }
+    .chip:hover{
+      transform: translateY(-1px);
+      border-color: rgba(6,182,212,.55);
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+    }
+    .chip input{ transform: scale(1.05); }
+
+    .error{
+      display:none;
+      margin-top: 8px;
+      color: #ffe0e0;
+      background: rgba(255,77,77,.14);
+      border: 1px solid rgba(255,77,77,.42);
+      padding: 10px 11px;
+      border-radius: 12px;
+      font-weight: 900;
+      font-size: 12.8px;
+      line-height: 1.35;
+    }
+
+    .warn-note{
+      margin-top: 10px;
+      color: #fff2f2;
+      background: rgba(255,77,77,.12);
+      border: 1px solid rgba(255,77,77,.35);
+      padding: 10px 11px;
+      border-radius: 14px;
+      font-weight: 900;
+      font-size: 12.8px;
+      line-height: 1.35;
+    }
+
+    .btn{
+      margin-top: 14px;
+      width:100%;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 0;
+      cursor:pointer;
+      color:#fff;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing:.2px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 14px 35px rgba(124,58,237,.25);
+      transition: .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+
+    .sub-actions{
+      display:flex;
+      gap:10px;
+      margin-top: 10px;
+      flex-wrap:wrap;
+    }
+
+    .mini-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:#eaf2ff;
+      font-weight: 900;
+      cursor:pointer;
+      transition:.15s ease;
+      user-select:none;
+      flex:1;
+      min-width: 160px;
+      text-decoration:none;
+    }
+    .mini-btn:hover{ transform: translateY(-1px); }
+    .mini-btn.danger{
+      border-color: rgba(255,77,77,.35);
+      background: rgba(255,77,77,.10);
+    }
+    .mini-btn:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+      transform:none;
+    }
+
+    .inline-link-btn.red{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin-left: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,77,77,.60);
+      background: linear-gradient(180deg, rgba(255,77,77,.98), rgba(255,47,47,.88));
+      color: #ffffff;
+      font-weight: 1000;
+      font-size: 13.5px;
+      cursor: pointer;
+      user-select:none;
+      transition: .15s ease;
+      text-decoration:none;
+      white-space: nowrap;
+      box-shadow: 0 12px 28px rgba(255,77,77,.20);
+    }
+    .inline-link-btn.red:hover{ transform: translateY(-1px); }
+
+    .inline-link-btn.green{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(34,197,94,.45);
+      background: linear-gradient(135deg, rgba(37,211,102,.95), rgba(16,185,129,.95));
+      color:#06210f;
+      font-weight: 1000;
+      font-size: 13px;
+      text-decoration:none;
+      cursor:pointer;
+      transition:.15s ease;
+      box-shadow: 0 14px 30px rgba(34,197,94,.12);
+      width: fit-content;
+    }
+    .inline-link-btn.green:hover{ transform: translateY(-1px); }
+
+    .status-row{
+      margin-top: 10px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .status-pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      font-weight: 900;
+      font-size: 12.5px;
+    }
+    .status-pill.ok{ border-color: rgba(34,197,94,.35); }
+    .file-name{
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.35;
+      margin-top: 6px;
+    }
+
+    .side-info ul{ margin: 0; padding-left: 18px; line-height: 1.55; color:#d7e3ff; font-size: 13px; }
+
+    .pill{
+      display:inline-block;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 1000;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      margin: 3px 8px 0 0;
+    }
+
+    .danger-text{
+      margin-top: 12px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,138,138,.35);
+      background: linear-gradient(180deg, rgba(255,138,138,.14), rgba(255,138,138,.06));
+      color:#fff1f1;
+      font-weight: 900;
+      line-height: 1.35;
+      font-size: 13px;
+    }
+
+    .rule-title{
+      font-weight: 1000;
+      font-size: 15px;
+      color:#ffffff;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+    .rule-block{
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.14);
+      margin-top: 10px;
+    }
+
+    .result{ margin-top: 18px; padding: 16px; }
+    pre{
+      margin:0;
+      white-space: pre-wrap;
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      padding: 12px;
+      color: #eaf2ff;
+      line-height: 1.45;
+      font-weight: 800;
+    }
+
+    .action-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 12px; }
+
+    .copy-btn, .wa-send-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 11px 12px;
+      border-radius: 14px;
+      text-decoration:none;
+      font-weight: 1000;
+      transition:.15s ease;
+      user-select:none;
+      width: fit-content;
+      border: none;
+    }
+
+    .copy-btn{
+      background: linear-gradient(135deg, rgba(37,99,235,.95), rgba(99,102,241,.95));
+      color:#fff;
+      cursor:pointer;
+    }
+    .copy-btn:hover{ transform: translateY(-1px); }
+
+    .wa-send-btn{
+      background: linear-gradient(135deg, rgba(37,211,102,.95), rgba(16,185,129,.95));
+      color:#06210f;
+      cursor:pointer;
+    }
+    .wa-send-btn:hover{ transform: translateY(-1px); }
+
+    .big-hint{
+      margin-top: 10px;
+      font-weight: 1000;
+      color:#eaf2ff;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+
+    .big-danger{
+      margin-top: 10px;
+      border-radius: 18px;
+      padding: 12px 12px;
+      border: 2px solid rgba(255,47,47,.70);
+      background: linear-gradient(180deg, rgba(255,47,47,.22), rgba(255,47,47,.10));
+      color: #ffd6d6;
+      font-weight: 1000;
+      font-size: 16px;
+      line-height: 1.35;
+      letter-spacing: .2px;
+    }
+    .big-danger b{ color:#ffffff; }
+
+    .danger-footer{
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,77,77,.10);
+      border: 1px solid rgba(255,77,77,.35);
+      color: #ffecec;
+      font-weight: 1000;
+      line-height: 1.35;
+      font-size: 13px;
+    }
+
+    .result p{ margin: 10px 0 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,.6);
+      border: 1px solid rgba(255,255,255,.14);
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.4);
+      font-weight: 900;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events:none;
+      transition: .18s ease;
+      z-index: 9999;
+      max-width: 92vw;
+      text-align:center;
+    }
+    .toast.show{ opacity: 1; }
+
+    .hidden-file{
+      position:absolute;
+      left:-9999px;
+      width:1px;
+      height:1px;
+      overflow:hidden;
+    }
+
+    @media (max-width: 980px){
+      body{ padding:16px; }
+      .wrap{ flex-direction: column; }
+      form.card{ max-width: 100%; flex: 1 1 auto; }
+      .side-info.card{ width: 100%; }
+      .headline-actions{ width:100%; }
+      .soft-btn{ width:100%; justify-content:center; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top-alert">
+      Bu avtomatik sistemdir. Elanınız yalnız adminə <b>hazır şəkildə yaradılmış form</b> və <b>düzgün bilet</b> göndərildikdə paylaşılır.
+    </div>
+
+    <h2>📦 Aparıram Formu</h2>
+
+    <!-- ✅ İstədiyiniz kimi: yalnız 2 düymə -->
+    <div class="headline-actions">
+      <button type="button" class="soft-btn red" id="goRulesBtn">Qaydalar</button>
+      <a class="soft-btn green" href="https://bit.ly/3kklACf" target="_blank" rel="noopener noreferrer">AG Whatsap qrupu</a>
+    </div>
+
+    <div class="wrap">
+      <form id="aparForm" class="card" autocomplete="off">
+        <div class="section-title"><span class="dot"></span>Formu doldurun</div>
+
+        <label>Yön seçin</label>
+        <select id="direction" required>
+          <option value="Bakı–İzmir">Bakı–İzmir</option>
+          <option value="İzmir–Bakı">İzmir–Bakı</option>
+        </select>
+
+        <label>Tarix</label>
+        <input type="date" id="date" required />
+        <div id="dateError" class="error"></div>
+
+        <label>Ödəniş</label>
+        <select id="payment" required>
+          <option value="ödənişsiz">Ödənişsiz</option>
+          <option value="ödənişli">Ödənişli</option>
+        </select>
+
+        <div id="tariffOptions" style="display:none;">
+          <label style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+            <span>Qiymət səviyyəsi</span>
+            <button type="button" class="inline-link-btn red" id="tariffInfoBtn">Ətraflı məlumat almaq üçün klikləyin</button>
+          </label>
+
+          <select id="tariff">
+            <option value="#QT">#QT — Qrup tarifinə uyğun</option>
+            <option value="#QTA">#QTA — Qrup tarifindən aşağı</option>
+            <option value="#QTY">#QTY — Qrup tarifindən yuxarı</option>
+          </select>
+        </div>
+
+        <label>Apara biləcəyiniz şeylər</label>
+        <div class="checkbox-group">
+          <label class="chip">📄 <input type="checkbox" value="sənəd" /> Sənəd</label>
+          <label class="chip">🎁 <input type="checkbox" value="əşya" /> Əşya</label>
+          <label class="chip">🎒 <input type="checkbox" value="baqaj" /> Baqaj</label>
+        </div>
+        <div id="itemError" class="error">Aparacağınız şeyi seçməlisiniz (Sənəd / Əşya / Baqaj).</div>
+
+        <label>WhatsApp nömrəniz (+994 / +90 ilə)</label>
+        <input type="text" id="phone" placeholder="+994551234567" required />
+        <div id="phoneError" class="error">Nömrə formatı düzgün deyil. Nümunə: +994XXXXXXXXX və ya +90XXXXXXXXXX</div>
+
+        <label>WhatsApp nömrənizi təkrar yazın (təsdiq)</label>
+        <input type="text" id="phoneConfirm" placeholder="+994551234567" />
+        <div id="phoneMatchError" class="error">Elandakı nömrə ilə WhatsApp nömrəniz eyni olmalıdır.</div>
+
+        <div class="warn-note">
+          ⚠️ Adminə elan göndərdiyiniz nömrə ilə elanda yazdığınız nömrə eyni olmalıdır. Uyğun gəlməzsə, elan paylaşılmır.
+        </div>
+
+        <label style="margin-top:14px;">Təyyarə bileti (PDF/şəkil)</label>
+        <div class="muted">
+          Biletdə <b>Ad</b>, <b>Soyad</b>, <b>PNR/bilet nömrəsi</b>, <b>uçuş tarixi</b> və <b>uçuş istiqaməti</b> mütləq görünməlidir.
+        </div>
+
+        <div class="sub-actions">
+          <button type="button" class="mini-btn" id="pickTicketBtn">📎 Bileti seç</button>
+          <button type="button" class="mini-btn danger" id="removeTicketBtn" disabled>🗑️ Bileti sil</button>
+        </div>
+
+        <input class="hidden-file" type="file" id="ticketFile" accept="application/pdf,image/*" />
+
+        <div class="status-row" id="ticketStatusRow" style="display:none;">
+          <span class="status-pill ok">✅ Bilet yükləndi</span>
+          <span class="file-name" id="ticketFileName"></span>
+        </div>
+
+        <div id="ticketError" class="error"></div>
+
+        <button type="button" id="genBtn" class="btn">Elan Hazırla</button>
+      </form>
+
+      <aside class="side-info card" id="qisa-qaydalar">
+        <div class="section-title"><span class="dot"></span>Qaydalar və məlumat</div>
+
+        <div class="rule-block">
+          <div class="rule-title">🧳 APAR GƏTİR QRUPU — QAYDALAR VƏ MƏLUMAT</div>
+
+          <div class="muted">
+            🟢 Bu qrupun məqsədi insanların bir-birinə kömək etməsini və İzmir–Bakı / Bakı–İzmir istiqamətində göndərişlərin daha asan, sürətli və sərfəli təşkilini təmin etməkdir.
+            <br><br>
+            Burada siz sənəd, çanta və ya digər şəxsi əşyaları həm pulsuz, həm də razılaşdırılmış məbləğ qarşılığında
+            <button type="button" class="inline-link-btn red" id="tariffJumpBtn">Qrup tarifləri</button>
+            göndərə və ya apara bilərsiniz.
+            <br>
+            Qrup ticari məqsəd daşımır — bu, sadəcə yardımlaşma platformasıdır.
+          </div>
+        </div>
+
+        <div class="rule-block" id="group-rules">
+          <div class="rule-title">Qısaca qaydalar</div>
+          <ul style="margin-top:8px;">
+            <li><b>1)</b> Elan paylaşmaq üçün qrupun üzvü olmaq mütləqdir.</li>
+            <li><b>2)</b> Elanlar həftədə <b>1 dəfə</b> paylaşılır.</li>
+            <li><b>3)</b> Hər <b>#APARIRAM</b> elanı üçün bilet (PDF və ya şəkil formatında) göndərmək <b>mütləqdir</b>.
+              Bu, saxta elanların qarşısını almaq üçün tətbiq olunur. (Biletdə <b>ad</b>, <b>soyad</b> və <b>PNR</b> nömrəsi görünməlidir.)
+            </li>
+
+            <li><b>4)</b> Paylaşılan “Aparıram” kontaktları ilə aşağıdakı məhsullarla bağlı göndəriş istəmək <b>qadağandır</b> və bu halda <b>qrupdan çıxarıla bilərsiniz</b>.
+              Adminlər və qrup bu cür məhsulların daşınması, gömrük və hər hansı hüquqi hadisələrdə <b>məsuliyyət daşımır</b>.
+              Xahiş edirik, belə təklif edənləri bizə bildirin.
+              <div style="margin-top:8px;">
+                <div>Alkoqollu içkilər 🍷</div>
+                <div>Siqaret və tütün məhsulları 🚭</div>
+                <div>Elektron siqaretlər 🔋</div>
+                <div>Dərman və kosmetik vasitələr 💊💄</div>
+              </div>
+            </li>
+
+            <li><b>5)</b> Elanlar yalnız <b>rəqəmsal</b> və <b>düzgün formatda</b> qəbul edilir. Səhv formatda göndərilən elanlar paylaşılmayacaq.</li>
+            <li><b>6)</b> Elan göndərmə saatı — <b>08:00–19:00</b> (TR vaxtı ilə). Bu saatlardan kənar adminlərə yazmaq <b>qadağandır</b> (qrupdan çıxarıla bilərsiniz).</li>
+          </ul>
+        </div>
+
+        <div class="rule-block" id="qrup-tarifleri">
+          <div class="rule-title">💰 Qrup tarifləri (orta)</div>
+
+          <div class="muted">
+            ***Göndərmək üçün istənilən tarifi seçə bilərsiniz.
+          </div>
+
+          <ul style="margin-top:8px;">
+            <li>2 kq-a qədər: <b>25 AZN</b></li>
+            <li>2–5 kq (daxil): <b>50 AZN</b></li>
+            <li>5 kq-dan yuxarı: hər əlavə 1 kq üçün <b>10 AZN</b></li>
+            <li>Sənəd (1 ədəd): <b>20 AZN</b></li>
+          </ul>
+
+          <div class="rule-title" style="margin-top:12px;">🔖 Qiymət səviyyəsi</div>
+          <div class="muted">
+            <span class="pill">#QT — uyğun</span>
+            <span class="pill">#QTA — aşağı</span>
+            <span class="pill">#QTY — yuxarı</span>
+          </div>
+        </div>
+
+        <div class="danger-text">
+          Üz vurmayın — admin xəbərdarlıq etməyəcək və yazdıqlarınıza cavab verməyəcək.
+        </div>
+      </aside>
+    </div>
+
+    <div id="result" class="card result" style="display:none;"></div>
+  </div>
+
+  <div id="toast" class="toast">Kopyalandı ✅</div>
+
+  <script>
+    const ADMIN_PHONE_RAW = "+380503693882";
+    let lastElanText = "";
+    let selectedTicket = null;
+
+    const ticketFileInput = document.getElementById("ticketFile");
+    const pickTicketBtn = document.getElementById("pickTicketBtn");
+    const removeTicketBtn = document.getElementById("removeTicketBtn");
+    const ticketStatusRow = document.getElementById("ticketStatusRow");
+    const ticketFileName = document.getElementById("ticketFileName");
+    const ticketError = document.getElementById("ticketError");
+
+    const dateInput = document.getElementById("date");
+    const dateError = document.getElementById("dateError");
+
+    const phoneInput = document.getElementById("phone");
+    const phoneConfirmInput = document.getElementById("phoneConfirm");
+    const phoneMatchError = document.getElementById("phoneMatchError");
+
+    const tariffInfoBtn = document.getElementById("tariffInfoBtn");
+    const tariffJumpBtn = document.getElementById("tariffJumpBtn");
+    const qrupTarifleriEl = document.getElementById("qrup-tarifleri");
+
+    const resultDiv = document.getElementById("result");
+
+    // ✅ “Qaydalar” düyməsi bu bloka aparır
+    const goRulesBtn = document.getElementById("goRulesBtn");
+    const rulesPanel = document.getElementById("qisa-qaydalar");
+    if(goRulesBtn && rulesPanel){
+      goRulesBtn.addEventListener("click", () => {
+        rulesPanel.scrollIntoView({ behavior:"smooth", block:"start" });
+      });
+    }
+
+    function toISODate(d){
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth()+1).padStart(2,"0");
+      const dd = String(d.getDate()).padStart(2,"0");
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function addMonthsSafe(dateObj, months){
+      const d = new Date(dateObj);
+      const targetMonth = d.getMonth() + months;
+      const targetYear = d.getFullYear() + Math.floor(targetMonth / 12);
+      const monthIndex = (targetMonth % 12 + 12) % 12;
+      const day = d.getDate();
+
+      const lastDay = new Date(targetYear, monthIndex + 1, 0).getDate();
+      const clampedDay = Math.min(day, lastDay);
+      return new Date(targetYear, monthIndex, clampedDay);
+    }
+
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const maxDate = addMonthsSafe(today, 1);
+
+    dateInput.min = toISODate(today);
+    dateInput.max = toISODate(maxDate);
+
+    function showDateError(msg){
+      dateError.textContent = msg;
+      dateError.style.display = "block";
+    }
+    function hideDateError(){
+      dateError.textContent = "";
+      dateError.style.display = "none";
+    }
+
+    function validateDate(selectedISO){
+      if(!selectedISO){
+        showDateError("Tarixi seçməlisiniz.");
+        return false;
+      }
+
+      const chosen = new Date(selectedISO + "T00:00:00");
+      chosen.setHours(0,0,0,0);
+
+      if(chosen < today){
+        showDateError("Keçmiş tarix seçmək olmaz.");
+        return false;
+      }
+
+      if(chosen > maxDate){
+        showDateError("Elanlarımız yalnız bir ay içindəki tarixlər üçün uyğun şəkildə verilməlidir.");
+        return false;
+      }
+
+      hideDateError();
+      return true;
+    }
+
+    dateInput.addEventListener("change", () => validateDate(dateInput.value));
+
+    function jumpToTariffs(){
+      if(!qrupTarifleriEl) return;
+      qrupTarifleriEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    if (tariffInfoBtn) tariffInfoBtn.addEventListener("click", jumpToTariffs);
+    if (tariffJumpBtn) tariffJumpBtn.addEventListener("click", jumpToTariffs);
+
+    function showToast(msg){
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(() => t.classList.remove("show"), 1500);
+    }
+
+    function sanitizeFileName(name){
+      if(!name) return "";
+      return name.length > 44 ? (name.slice(0, 30) + "..." + name.slice(-10)) : name;
+    }
+
+    function updateTicketUI(){
+      if(selectedTicket){
+        ticketStatusRow.style.display = "flex";
+        ticketFileName.textContent = "• " + sanitizeFileName(selectedTicket.name);
+        removeTicketBtn.disabled = false;
+      }else{
+        ticketStatusRow.style.display = "none";
+        ticketFileName.textContent = "";
+        removeTicketBtn.disabled = true;
+      }
+    }
+
+    function showTicketError(msg){
+      ticketError.textContent = msg;
+      ticketError.style.display = "block";
+    }
+    function hideTicketError(){
+      ticketError.textContent = "";
+      ticketError.style.display = "none";
+    }
+
+    pickTicketBtn.addEventListener("click", () => ticketFileInput.click());
+
+    ticketFileInput.addEventListener("change", () => {
+      const f = ticketFileInput.files && ticketFileInput.files[0] ? ticketFileInput.files[0] : null;
+      if(!f){
+        selectedTicket = null;
+        updateTicketUI();
+        showTicketError("❗ Bilet yüklənməyib. apargetir.bot biletinizi yoxlamalıdır — bilet (PDF və ya şəkil) yüklənmədən elan hazırlamaq olmaz.");
+        return;
+      }
+
+      const okType = f.type === "application/pdf" || (f.type && f.type.startsWith("image/"));
+      if(!okType){
+        selectedTicket = null;
+        ticketFileInput.value = "";
+        updateTicketUI();
+        showTicketError("❗ Zəhmət olmasa bilet üçün yalnız PDF və ya şəkil (JPG/PNG və s.) yükləyin.");
+        return;
+      }
+
+      selectedTicket = f;
+      updateTicketUI();
+      hideTicketError();
+      showToast("Bilet yükləndi ✅");
+    });
+
+    removeTicketBtn.addEventListener("click", () => {
+      selectedTicket = null;
+      ticketFileInput.value = "";
+      updateTicketUI();
+      showTicketError("❗ Bilet silindi. apargetir.bot biletinizi yoxlamalıdır — bilet yüklənmədən elan hazırlamaq olmaz.");
+      showToast("Bilet silindi");
+    });
+
+    document.getElementById("payment").addEventListener("change", function() {
+      document.getElementById("tariffOptions").style.display =
+        this.value === "ödənişli" ? "block" : "none";
+    });
+
+    function normalizePhone(p){ return (p || "").replace(/\s/g,""); }
+    function isValidPhone(input){
+      const raw = normalizePhone(input);
+      return /^(\+994\d{9}|\+90\d{10})$/.test(raw);
+    }
+
+    function validatePhoneMatch(){
+      const p1 = normalizePhone(phoneInput.value.trim());
+      const p2 = normalizePhone(phoneConfirmInput.value.trim());
+
+      if(!p2){
+        phoneMatchError.style.display = "none";
+        return true;
+      }
+
+      if(p1 && p2 && p1 === p2){
+        phoneMatchError.style.display = "none";
+        return true;
+      }
+
+      phoneMatchError.style.display = "block";
+      return false;
+    }
+
+    phoneInput.addEventListener("input", validatePhoneMatch);
+    phoneConfirmInput.addEventListener("input", validatePhoneMatch);
+
+    function formatDateDDMMYYYY(isoDate){
+      const d = new Date(isoDate + "T00:00:00");
+      const dd = String(d.getDate()).padStart(2,"0");
+      const mm = String(d.getMonth()+1).padStart(2,"0");
+      const yyyy = d.getFullYear();
+      return `${dd}.${mm}.${yyyy}`;
+    }
+
+    function validateFormBeforeBuild(){
+      let valid = true;
+
+      if(!validateDate(dateInput.value)) valid = false;
+
+      const itemsArr = Array.from(document.querySelectorAll(".checkbox-group input:checked"));
+      if(itemsArr.length === 0){
+        document.getElementById("itemError").style.display = "block";
+        valid = false;
+      }else{
+        document.getElementById("itemError").style.display = "none";
+      }
+
+      const phone = phoneInput.value.trim();
+      document.getElementById("phoneError").style.display = (!isValidPhone(phone)) ? "block" : "none";
+      if(!isValidPhone(phone)) valid = false;
+
+      const confirm = phoneConfirmInput.value.trim();
+      if(!confirm){
+        phoneMatchError.textContent = "WhatsApp nömrənizi təkrar yazın (təsdiq).";
+        phoneMatchError.style.display = "block";
+        valid = false;
+      }else{
+        phoneMatchError.textContent = "Elandakı nömrə ilə WhatsApp nömrəniz eyni olmalıdır.";
+        if(!validatePhoneMatch()) valid = false;
+      }
+
+      if(!selectedTicket){
+        showTicketError("❗ Bilet yüklənməyib. apargetir.bot biletinizi yoxlamalıdır — buna görə bilet (PDF və ya şəkil) yüklənmədən elan hazırlamaq olmaz.");
+        valid = false;
+      }else{
+        hideTicketError();
+      }
+
+      return valid;
+    }
+
+    function buildElanText(){
+      const direction = document.getElementById("direction").value;
+      const date = document.getElementById("date").value;
+      const payment = document.getElementById("payment").value;
+      const tariff = document.getElementById("tariff").value;
+      const phone = normalizePhone(phoneInput.value.trim());
+
+      const itemsArr = Array.from(document.querySelectorAll(".checkbox-group input:checked"))
+        .map(cb => cb.value);
+
+      const formattedDate = formatDateDDMMYYYY(date);
+
+      let paymentText = "";
+      let tagText = "";
+      if (payment === "ödənişli") {
+        tagText = " " + tariff;
+        paymentText = "Ödənişli";
+      } else {
+        paymentText = "Ödənişsiz";
+      }
+
+      const items = itemsArr.join(", ");
+
+      return `#APARIRAM${tagText}
+1) ${direction}
+2) ${formattedDate}
+3) ${paymentText}
+4) ${items}
+5) Bu nömrəyə klikləyərək aparanla əlaqə saxlaya bilərsiniz: ${phone}`;
+    }
+
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch(e){
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand("copy");
+        document.body.removeChild(ta);
+        return ok;
+      }
+    }
+
+    function openWhatsAppToAdminWithText(text){
+      const url =
+        "https://wa.me/" + ADMIN_PHONE_RAW.replace(/\D/g,"") +
+        "?text=" + encodeURIComponent(text);
+
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    function generateResult() {
+      if(!validateFormBeforeBuild()){
+        showToast("Formda səhv var ⚠️");
+        if(dateError.style.display === "block") dateInput.scrollIntoView({behavior:"smooth", block:"center"});
+        else if(document.getElementById("itemError").style.display === "block") document.getElementById("itemError").scrollIntoView({behavior:"smooth", block:"center"});
+        else if(document.getElementById("phoneError").style.display === "block") document.getElementById("phoneError").scrollIntoView({behavior:"smooth", block:"center"});
+        else if(phoneMatchError.style.display === "block") phoneMatchError.scrollIntoView({behavior:"smooth", block:"center"});
+        else if(ticketError.style.display === "block") ticketError.scrollIntoView({behavior:"smooth", block:"center"});
+        return;
+      }
+
+      lastElanText = buildElanText();
+      resultDiv.style.display = "block";
+
+      resultDiv.innerHTML =
+        `<pre>${lastElanText}</pre>
+
+         <div class="action-row">
+           <div style="flex:1; min-width:260px;">
+             <div class="big-hint">Tebrikler :) Elanınız yaradıldı ! ⬇️ Altdakı yaşıl düyməyə klikləyərək elanı WhatsApp vasitəsilə adminə göndərin.</div>
+
+             <div class="big-danger">❗ <b>Biletiniz bot tərəfindən yoxlanıldı, amma adminə göndərilmədi.</b> Biletinizi (PDF və ya şəkil şəklində — üstündə <b>ad, soyad, tarix, uçuş istiqaməti</b> yazılan) mütləq adminə göndərin!</div>
+
+             <div class="muted" style="margin-top:10px; font-weight:1000;">
+               Bu düyməyə klikləyərək elanı WhatsApp vasitəsilə adminə göndərin.
+             </div>
+
+             <button class="wa-send-btn" type="button" id="waBtn">WhatsApp-la adminə göndər</button>
+           </div>
+         </div>
+
+         <div class="danger-footer">
+           WhatsApp düyməsi işləmədikdə, elanlarınızı bu nömrəyə göndərə bilərsiniz: <b>+380 503 69 38 82</b><br>
+           ⏰ Qəbul saatı: <b>08:00–19:00</b> (TR vaxtı ilə). Bu saatlardan kənar göndərilən elanlar <b>paylaşılmır</b>.
+         </div>
+
+         <div class="action-row" style="margin-top:12px;">
+           <button class="copy-btn" type="button" id="copyBtn">Elanı Kopyala</button>
+         </div>
+
+         <p>
+           <b>“Elanı Kopyala”</b> düyməsinə basın — elan avtomatik kopyalanacaq.
+           Daha sonra <b>WhatsApp</b> vasitəsilə adminə göndərin.
+           Sonra biletinizi <b>PDF/şəkil</b> formatında təqdim edin
+           (biletdə <b>Ad</b>, <b>Soyad</b>, <b>PNR/bilet nömrəsi</b>, <b>uçuş tarixi</b> və <b>uçuş istiqaməti</b> görünməlidir).
+           Uyğun olmayan biletlər və fərqli nömrə ilə göndərilən elanlar <b>paylaşılmır</b>.
+         </p>
+        `;
+
+      document.getElementById("copyBtn").addEventListener("click", async () => {
+        const ok = await copyText(lastElanText);
+        showToast(ok ? "Elan kopyalandı ✅" : "Kopyalama alınmadı ❌");
+      });
+
+      document.getElementById("waBtn").addEventListener("click", () => {
+        const p1 = normalizePhone(phoneInput.value.trim());
+        const p2 = normalizePhone(phoneConfirmInput.value.trim());
+        if(!p2 || p1 !== p2){
+          alert("Elandakı nömrə ilə WhatsApp nömrəniz eyni olmalıdır.");
+          return;
+        }
+        openWhatsAppToAdminWithText(lastElanText);
+        showToast("WhatsApp açıldı ✅");
+      });
+
+      resultDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    document.getElementById("genBtn").addEventListener("click", generateResult);
+    updateTicketUI();
+  </script>
+</body>
+</html>
