@@ -47,7 +47,6 @@
 
     h2{ margin: 10px 0 8px 0; font-size: 26px; letter-spacing:.2px; }
 
-    /* ✅ Başlıq altı düymələr */
     .headline-actions{
       display:flex;
       gap:10px;
@@ -255,7 +254,6 @@
     }
     .inline-link-btn.red:hover{ transform: translateY(-1px); }
 
-    /* ✅ Qrup linki üçün balaca buton */
     .tiny-link-btn{
       display:inline-flex;
       align-items:center;
@@ -454,7 +452,6 @@
   <div class="container">
     <h2>📦 Aparıram Formu</h2>
 
-    <!-- ✅ yalnız 1 düymə -->
     <div class="headline-actions">
       <button type="button" class="soft-btn red" id="goRulesBtn">Qaydalar</button>
     </div>
@@ -608,7 +605,9 @@
   <div id="toast" class="toast">Kopyalandı ✅</div>
 
   <script>
-    const ADMIN_PHONE_RAW = "+380503693882";
+    // ✅ Admin WhatsApp nömrəsi (hamısı burada idarə olunur)
+    const ADMIN_PHONE_DISPLAY = "+380 975 516 815";
+    const ADMIN_PHONE_WA = "+380975516815"; // wa.me üçün boşluqsuz
     let lastElanText = "";
     let selectedTicket = null;
 
@@ -625,7 +624,6 @@
     const phoneInput = document.getElementById("phone");
     const resultDiv = document.getElementById("result");
 
-    // ✅ “Qaydalar” düyməsi
     document.getElementById("goRulesBtn").addEventListener("click", () => {
       document.getElementById("qaydalarBolmesi").scrollIntoView({ behavior:"smooth", block:"start" });
     });
@@ -854,7 +852,7 @@
 
     function openWhatsAppToAdminWithText(text){
       const url =
-        "https://wa.me/" + ADMIN_PHONE_RAW.replace(/\D/g,"") +
+        "https://wa.me/" + ADMIN_PHONE_WA.replace(/\D/g,"") +
         "?text=" + encodeURIComponent(text);
 
       window.open(url, "_blank", "noopener,noreferrer");
@@ -890,7 +888,7 @@
          </div>
 
          <div class="danger-footer">
-           WhatsApp düyməsi işləmədikdə, elanlarınızı bu nömrəyə göndərə bilərsiniz: <b>+380 503 69 38 82</b><br>
+           WhatsApp düyməsi işləmədikdə, elanlarınızı bu nömrəyə göndərə bilərsiniz: <b>${ADMIN_PHONE_DISPLAY}</b><br>
            ⏰ Qəbul saatı: <b>08:00–19:00</b> (TR vaxtı ilə). Bu saatlardan kənar göndərilən elanlar <b>paylaşılmır</b>.
          </div>
 
@@ -925,3 +923,4 @@
   </script>
 </body>
 </html>
+```0
